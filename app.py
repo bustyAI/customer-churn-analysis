@@ -20,7 +20,7 @@ from sklearn.metrics import (
 # Page configuration
 st.set_page_config(
     page_title="Customer Churn Analysis & Prediction | Oscar Ochoa",
-    page_icon="📊",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -315,7 +315,7 @@ def main():
     with st.sidebar:
         st.markdown("""
         <div style='text-align: center; padding: 20px;'>
-            <h1 style='font-size: 1.5rem;'>📊 Churn Analysis</h1>
+            <h1 style='font-size: 1.5rem;'>Churn Analysis</h1>
             <p style='color: #a78bfa;'>ML-Powered Predictions</p>
         </div>
         """, unsafe_allow_html=True)
@@ -324,7 +324,7 @@ def main():
 
         page = st.radio(
             "Navigation",
-            ["🏠 Overview", "🔍 Data Explorer", "📈 EDA Insights", "🤖 Model Performance", "🎯 Predict Churn", "💡 Key Findings"],
+            ["Overview", "Explore the Data", "What I Found", "How the Models Did", "Try It Yourself", "Takeaways"],
             label_visibility="collapsed"
         )
 
@@ -333,25 +333,23 @@ def main():
         # About the Author section
         st.markdown("""
         <div style='padding: 15px; background: linear-gradient(135deg, #1e1e3f 0%, #2d1b4e 100%); border-radius: 10px; border: 1px solid #6c4ab6;'>
-            <h4 style='color: #a78bfa; margin-bottom: 10px; text-align: center;'>👨‍💻 About the Author</h4>
+            <h4 style='color: #a78bfa; margin-bottom: 10px; text-align: center;'>About Me</h4>
             <p style='color: #e2e8f0; font-size: 0.85rem; line-height: 1.5;'>
                 Hey, I'm <strong>Oscar Ochoa</strong>, a software enthusiast with a passion for turning raw data into meaningful stories.
                 What draws me to data science is the thrill of diving into a new dataset and uncovering insights that drive real business decisions.
-                This project showcases how machine learning can reveal hidden patterns in customer behavior. Sometimes
-                the features you overlook are the ones telling you the most.
             </p>
             <br>
             <p style='color: #a78bfa; font-size: 0.8rem;'>
-                🎓 <strong>M.S. Computer Science</strong><br>
+                <strong>M.S. Computer Science</strong><br>
                 <span style='color: #9ca3af;'>Grand Canyon University • July 2026</span>
             </p>
             <p style='color: #a78bfa; font-size: 0.8rem; margin-top: 8px;'>
-                🎓 <strong>B.S. Computer Science</strong><br>
+                <strong>B.S. Computer Science</strong><br>
                 <span style='color: #9ca3af;'>Cal State Monterey Bay • 2024</span>
             </p>
             <br>
             <p style='color: #a78bfa; font-size: 0.8rem;'>
-                🔍 <strong>Seeking Opportunities In:</strong><br>
+                <strong>Seeking Opportunities In:</strong><br>
                 <span style='color: #9ca3af;'>Software Engineering • Data Science<br>Machine Learning • Data Analytics</span>
             </p>
             <br>
@@ -363,6 +361,10 @@ def main():
                     <img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg' width='24'/>
                 </a>
             </div>
+            <br>
+            <p style='color: #9ca3af; font-size: 0.75rem; font-style: italic; text-align: center; border-top: 1px solid #6c4ab6; padding-top: 10px; margin-top: 5px;'>
+                "Data Science is not a philosophy, there is never one correct answer for everything."
+            </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -380,17 +382,17 @@ def main():
     results, feature_cols, num_cols, cat_cols = train_models(df)
 
     # Page routing
-    if page == "🏠 Overview":
+    if page == "Overview":
         show_overview(df)
-    elif page == "🔍 Data Explorer":
+    elif page == "Explore the Data":
         show_data_explorer(df)
-    elif page == "📈 EDA Insights":
+    elif page == "What I Found":
         show_eda(df)
-    elif page == "🤖 Model Performance":
+    elif page == "How the Models Did":
         show_models(results)
-    elif page == "🎯 Predict Churn":
+    elif page == "Try It Yourself":
         show_predictor(results, feature_cols, num_cols, cat_cols, df)
-    elif page == "💡 Key Findings":
+    elif page == "Takeaways":
         show_findings(results)
 
 
@@ -498,15 +500,17 @@ def show_overview(df):
         fig.update_yaxes(gridcolor='rgba(139, 92, 246, 0.2)')
         st.plotly_chart(fig, use_container_width=True)
 
-    # Project description
+    # Why I Built This
     st.markdown("""
     <div class='highlight-box'>
-        <h3>🎯 Project Objective</h3>
-        <p>This analysis aims to identify factors that influence customer churn and build predictive models
-        to help businesses retain customers. Using machine learning algorithms, we can predict which customers
-        are likely to leave and take proactive measures.</p>
+        <h3>Why I Built This</h3>
+        <p>I recently discovered Streamlit and I wanted to have a go at it. Data can tell a million stories,
+        you just have to know where to look and have the right tools to help you uncover interesting qualities.
+        I built this to show that businesses can extract valuable information just by getting your hands a little dirty.
+        These kinds of insights can help your business make informed decisions and understand customers and their needs.
+        I hope you have fun looking through some of the interesting stories this dataset has.</p>
         <br>
-        <h4>Models Implemented:</h4>
+        <h4>Models I Used:</h4>
         <ul>
             <li><strong>Logistic Regression</strong> - Interpretable baseline model</li>
             <li><strong>K-Nearest Neighbors</strong> - Distance-based classification</li>
@@ -519,7 +523,7 @@ def show_overview(df):
 
 def show_data_explorer(df):
     """Display interactive data explorer."""
-    st.markdown("<h1>🔍 Data Explorer</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>Explore the Data</h1>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class='info-box'>
@@ -569,7 +573,7 @@ def show_data_explorer(df):
     )
 
     # Column statistics
-    st.markdown("### 📊 Column Statistics")
+    st.markdown("### Column Statistics")
 
     col1, col2 = st.columns(2)
 
@@ -589,10 +593,10 @@ def show_data_explorer(df):
 
 def show_eda(df):
     """Display EDA visualizations."""
-    st.markdown("<h1>📈 Exploratory Data Analysis</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>What I Found</h1>", unsafe_allow_html=True)
 
     # Create tabs for different analyses
-    tab1, tab2, tab3, tab4 = st.tabs(["📊 Distributions", "🔄 Churn Factors", "💰 Financial Analysis", "📱 Services"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Distributions", "Churn Factors", "Financial Analysis", "Services"])
 
     with tab1:
         col1, col2 = st.columns(2)
@@ -710,7 +714,7 @@ def show_eda(df):
 
         st.markdown("""
         <div class='highlight-box'>
-            <h4>🔑 Key Churn Factors Identified:</h4>
+            <h4>Key Churn Factors Identified:</h4>
             <ul>
                 <li><strong>Month-to-month contracts</strong> have the highest churn rate. Interestingly, even within
                 month-to-month, more customers stay than leave. But the <em>proportion</em> who churn is much higher
@@ -837,12 +841,12 @@ def show_eda(df):
 
 def show_models(results):
     """Display model performance comparison."""
-    st.markdown("<h1>🤖 Model Performance</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>How the Models Did</h1>", unsafe_allow_html=True)
 
     # Class imbalance warning
     st.markdown("""
     <div class='highlight-box'>
-        <h4>⚠️ Important: Class Imbalance Challenge</h4>
+        <h4>Important: Class Imbalance Challenge</h4>
         <p>Our dataset has <strong>73.5% retained customers</strong> vs <strong>26.5% churned customers</strong>.
         This imbalance affects all models. They tend to be better at predicting the majority class (no churn)
         and struggle with the minority class (churn). That's why we use <strong>ROC AUC</strong> alongside
@@ -857,7 +861,7 @@ def show_models(results):
     )
 
     # Overview metrics
-    st.markdown("### 📊 Performance Overview")
+    st.markdown("### Performance Overview")
 
     cols = st.columns(4)
     for i, (name, data) in enumerate(results.items()):
@@ -927,7 +931,7 @@ def show_models(results):
         st.plotly_chart(fig, use_container_width=True)
 
     # Confusion Matrix
-    st.markdown("### 🎯 Confusion Matrix")
+    st.markdown("### Confusion Matrix")
 
     cm = results[selected_model]['confusion_matrix']
 
@@ -952,7 +956,7 @@ def show_models(results):
     st.plotly_chart(fig, use_container_width=True)
 
     # Model-specific insights
-    st.markdown("### 🔬 Model Analysis")
+    st.markdown("### Model Analysis")
 
     model_insights = {
         'Logistic Regression': """
@@ -1031,7 +1035,7 @@ def show_models(results):
     st.markdown(model_insights.get(selected_model, ""), unsafe_allow_html=True)
 
     # All models ROC comparison
-    st.markdown("### 📈 All Models ROC Comparison")
+    st.markdown("### All Models ROC Comparison")
 
     fig = go.Figure()
     colors = [COLORS['primary'], COLORS['success'], COLORS['warning'], COLORS['danger']]
@@ -1067,7 +1071,7 @@ def show_models(results):
 
 def show_predictor(results, feature_cols, num_cols, cat_cols, df):
     """Interactive churn prediction."""
-    st.markdown("<h1>🎯 Predict Customer Churn</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>Try It Yourself</h1>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class='highlight-box'>
@@ -1080,14 +1084,14 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("#### 👤 Demographics")
+        st.markdown("#### Demographics")
         gender = st.selectbox("Gender", ['Male', 'Female'])
         senior = st.selectbox("Senior Citizen", [0, 1], format_func=lambda x: 'Yes' if x == 1 else 'No')
         partner = st.selectbox("Has Partner", ['Yes', 'No'])
         dependents = st.selectbox("Has Dependents", ['Yes', 'No'])
 
     with col2:
-        st.markdown("#### 📱 Services")
+        st.markdown("#### Services")
         phone = st.selectbox("Phone Service", ['Yes', 'No'])
         multiple_lines = st.selectbox("Multiple Lines", ['No', 'Yes', 'No phone service'])
         internet = st.selectbox("Internet Service", ['DSL', 'Fiber optic', 'No'])
@@ -1099,7 +1103,7 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
         movies = st.selectbox("Streaming Movies", ['Yes', 'No', 'No internet service'])
 
     with col3:
-        st.markdown("#### 💳 Billing")
+        st.markdown("#### Billing")
         contract = st.selectbox("Contract", ['Month-to-month', 'One year', 'Two year'])
         paperless = st.selectbox("Paperless Billing", ['Yes', 'No'])
         payment = st.selectbox("Payment Method", [
@@ -1111,7 +1115,7 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
         total = st.number_input("Total Charges ($)", min_value=0.0, value=monthly * tenure)
 
     # Predict button
-    if st.button("🔮 Predict Churn Risk", use_container_width=True):
+    if st.button("Predict Churn Risk", use_container_width=True):
         # Create input dataframe
         input_data = pd.DataFrame({
             'gender': [gender],
@@ -1144,7 +1148,7 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
         retain_prob = probability[0] * 100
 
         st.markdown("---")
-        st.markdown("### 📊 Prediction Results")
+        st.markdown("### Prediction Results")
 
         col1, col2, col3 = st.columns([1, 2, 1])
 
@@ -1159,7 +1163,7 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
                     border-radius: 15px;
                     box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
                 '>
-                    <h2 style='color: {COLORS['danger']}; margin: 0;'>⚠️ HIGH CHURN RISK</h2>
+                    <h2 style='color: {COLORS['danger']}; margin: 0;'>HIGH CHURN RISK</h2>
                     <p style='font-size: 3rem; color: {COLORS['danger']}; margin: 10px 0;'>{churn_prob:.1f}%</p>
                     <p style='color: #a78bfa;'>Probability of Churning</p>
                 </div>
@@ -1174,39 +1178,39 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
                     border-radius: 15px;
                     box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
                 '>
-                    <h2 style='color: {COLORS['success']}; margin: 0;'>✅ LOW CHURN RISK</h2>
+                    <h2 style='color: {COLORS['success']}; margin: 0;'>LOW CHURN RISK</h2>
                     <p style='font-size: 3rem; color: {COLORS['success']}; margin: 10px 0;'>{retain_prob:.1f}%</p>
                     <p style='color: #a78bfa;'>Probability of Staying</p>
                 </div>
                 """, unsafe_allow_html=True)
 
         # Risk factors
-        st.markdown("### 🔍 Risk Factor Analysis")
+        st.markdown("### Risk Factor Analysis")
 
         risk_factors = []
         if contract == 'Month-to-month':
-            risk_factors.append("📋 Month-to-month contract (higher churn risk)")
+            risk_factors.append("Month-to-month contract (higher churn risk)")
         if payment == 'Electronic check':
-            risk_factors.append("💳 Electronic check payment (associated with higher churn)")
+            risk_factors.append("Electronic check payment (associated with higher churn)")
         if internet == 'Fiber optic':
-            risk_factors.append("🌐 Fiber optic internet (higher churn rate observed)")
+            risk_factors.append("Fiber optic internet (higher churn rate observed)")
         if tenure < 12:
-            risk_factors.append(f"⏱️ Short tenure ({tenure} months) - new customers churn more")
+            risk_factors.append(f"Short tenure ({tenure} months) - new customers churn more")
         if monthly > 70:
-            risk_factors.append(f"💰 High monthly charges (${monthly:.2f})")
+            risk_factors.append(f"High monthly charges (${monthly:.2f})")
 
         protective_factors = []
         if contract in ['One year', 'Two year']:
-            protective_factors.append(f"📋 {contract} contract (lower churn risk)")
+            protective_factors.append(f"{contract} contract (lower churn risk)")
         if tenure > 24:
-            protective_factors.append(f"⏱️ Long tenure ({tenure} months) - loyal customer")
+            protective_factors.append(f"Long tenure ({tenure} months) - loyal customer")
         if security == 'Yes' or support == 'Yes':
-            protective_factors.append("🛡️ Has additional services (security/support)")
+            protective_factors.append("Has additional services (security/support)")
 
         col1, col2 = st.columns(2)
 
         with col1:
-            st.markdown("**⚠️ Risk Factors:**")
+            st.markdown("**Risk Factors:**")
             if risk_factors:
                 for factor in risk_factors:
                     st.markdown(f"- {factor}")
@@ -1214,7 +1218,7 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
                 st.markdown("- No significant risk factors identified")
 
         with col2:
-            st.markdown("**✅ Protective Factors:**")
+            st.markdown("**Protective Factors:**")
             if protective_factors:
                 for factor in protective_factors:
                     st.markdown(f"- {factor}")
@@ -1224,10 +1228,10 @@ def show_predictor(results, feature_cols, num_cols, cat_cols, df):
 
 def show_findings(results):
     """Display key findings and recommendations."""
-    st.markdown("<h1>💡 Key Findings & Recommendations</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>Takeaways</h1>", unsafe_allow_html=True)
 
     # Model comparison summary
-    st.markdown("### 🏆 Model Performance Summary")
+    st.markdown("### How Each Model Performed")
 
     model_data = []
     for name, data in results.items():
@@ -1246,7 +1250,7 @@ def show_findings(results):
     st.dataframe(pd.DataFrame(model_data), use_container_width=True, hide_index=True)
 
     # The big discovery section
-    st.markdown("### 🔍 The Critical Discovery: Non-Linear Customer Behavior")
+    st.markdown("### The Big Discovery")
 
     st.markdown("""
     <div class='highlight-box'>
@@ -1272,76 +1276,64 @@ def show_findings(results):
     </div>
     """, unsafe_allow_html=True)
 
-    # Key findings
-    st.markdown("### 📊 Key Insights from Analysis")
+    # Key findings - full width layout to break symmetry
+    st.markdown("### What Stood Out")
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("""
-        <div class='highlight-box'>
-            <h4>🎯 Churn Predictors (Strongest to Weakest)</h4>
-            <p><em>Based on Random Forest feature importance:</em></p>
-            <ol>
-                <li><strong>Tenure (21.6%)</strong> - Most important. New customers are high risk.</li>
-                <li><strong>Total Charges (13.5%)</strong> - Long-term financial commitment signals loyalty.</li>
-                <li><strong>Fiber Optic Internet (9.3%)</strong> - This service type has unique churn patterns.</li>
-                <li><strong>Monthly Charges (8.5%)</strong> - Higher bills correlate with higher churn.</li>
-                <li><strong>Two-Year Contract (7.9%)</strong> - Long contracts dramatically reduce churn.</li>
-                <li><strong>Electronic Check (7.7%)</strong> - This payment method is a red flag.</li>
-            </ol>
+    st.markdown("""
+    <div class='highlight-box'>
+        <h4>Churn Predictors (Strongest to Weakest)</h4>
+        <p><em>Based on Random Forest feature importance:</em></p>
+        <div style='display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;'>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Tenure (21.6%)</strong> - New customers are high risk</span>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Total Charges (13.5%)</strong> - Long-term commitment matters</span>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Fiber Optic (9.3%)</strong> - Unique churn patterns</span>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Monthly Charges (8.5%)</strong> - Higher bills = higher churn</span>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Two-Year Contract (7.9%)</strong> - Reduces churn dramatically</span>
+            <span style='background: rgba(139, 92, 246, 0.2); padding: 8px 15px; border-radius: 20px; border: 1px solid #6c4ab6;'><strong>Electronic Check (7.7%)</strong> - Red flag payment method</span>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col2:
-        st.markdown("""
-        <div class='highlight-box'>
-            <h4>🔬 Technical Findings</h4>
-            <ul>
-                <li><strong>Class Imbalance (73.5% vs 26.5%):</strong> All models struggle to detect churners.
-                Precision is high for non-churners (~85%) but lower for churners (~56-67%). This is expected
-                and why we prioritize ROC AUC over raw accuracy.</li>
-                <li><strong>Non-linear Relationships:</strong> Different customer segments respond differently
-                to the same features. One-size-fits-all models miss this nuance.</li>
-                <li><strong>Feature Interactions:</strong> High monthly charges + low tenure + month-to-month
-                contract + electronic check = highest risk profile.</li>
-                <li><strong>Model Selection:</strong> Random Forest is recommended. It has similar accuracy to Logistic
-                Regression but captures the non-linear segment behaviors that the Decision Tree analysis revealed.</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class='info-box' style='margin-top: 15px;'>
+        <h4>Technical Findings</h4>
+        <p><strong>Class Imbalance (73.5% vs 26.5%):</strong> All models struggle to detect churners.
+        Precision is high for non-churners (~85%) but lower for churners (~56-67%). This is expected
+        and why we prioritize ROC AUC over raw accuracy.</p>
+        <p style='margin-top: 10px;'><strong>Non-linear Relationships:</strong> Different customer segments respond differently
+        to the same features. One-size-fits-all models miss this nuance.</p>
+        <p style='margin-top: 10px;'><strong>Feature Interactions:</strong> High monthly charges + low tenure + month-to-month
+        contract + electronic check = highest risk profile.</p>
+        <p style='margin-top: 10px;'><strong>Model Selection:</strong> Random Forest is recommended. It has similar accuracy to Logistic
+        Regression but captures the non-linear segment behaviors that the Decision Tree analysis revealed.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Business recommendations
-    st.markdown("### 💼 Business Recommendations")
+    st.markdown("### Business Recommendations")
 
     recommendations = [
         {
-            "icon": "🎯",
             "title": "Target New Customers",
             "desc": "Implement retention programs for customers in their first 12 months. This is the critical period."
         },
         {
-            "icon": "📋",
             "title": "Incentivize Long-term Contracts",
             "desc": "Offer discounts or perks for customers who sign one or two-year contracts."
         },
         {
-            "icon": "💳",
             "title": "Payment Method Analysis",
             "desc": "Investigate why electronic check users churn more. Consider offering autopay incentives."
         },
         {
-            "icon": "🌐",
             "title": "Fiber Optic Service Review",
             "desc": "Review fiber optic service quality and pricing. High churn suggests customer dissatisfaction."
         },
         {
-            "icon": "📦",
             "title": "Bundle Services",
             "desc": "Customers with more services stay longer. Create attractive service bundles."
         },
         {
-            "icon": "🚨",
             "title": "Early Warning System",
             "desc": "Deploy this model to identify at-risk customers and trigger proactive retention outreach."
         }
@@ -1357,16 +1349,15 @@ def show_findings(results):
                 border: 1px solid #6c4ab6;
                 border-radius: 10px;
                 margin-bottom: 15px;
-                min-height: 150px;
+                min-height: 130px;
             '>
-                <div style='font-size: 2rem; margin-bottom: 10px;'>{rec['icon']}</div>
                 <h4 style='color: #a78bfa; margin: 0;'>{rec['title']}</h4>
                 <p style='color: #e2e8f0; font-size: 0.9rem; margin-top: 10px;'>{rec['desc']}</p>
             </div>
             """, unsafe_allow_html=True)
 
     # Why each model behaved as it did
-    st.markdown("### 🧠 Understanding Model Behavior")
+    st.markdown("### Why Each Model Behaved the Way It Did")
 
     col1, col2 = st.columns(2)
 
@@ -1400,25 +1391,47 @@ def show_findings(results):
         </div>
         """, unsafe_allow_html=True)
 
-    # Conclusion
+    # Personal Reflection
+    st.markdown("### What I Learned")
+
+    st.markdown("""
+    <div class='highlight-box'>
+        <p>One interesting thing I learned from this project is that customers don't always behave the way you think they will.
+        That's why it's important to analyze data and start asking questions.</p>
+        <br>
+        <p>For example, in this dataset the majority of customers who paid by electronic check churned. You have to ask yourself why.
+        They could have potentially loved the services, but the inconvenience of paying made them leave. This is important because
+        if they had an easier method of payment they could have stayed, and that's good for business.</p>
+        <br>
+        <p>On the machine learning side, high class imbalance can lead to a biased model. When one class dominates the dataset,
+        the model learns to favor that class because it's the "safe" prediction. In our case, predicting "no churn" for everyone
+        would still give 73.5% accuracy. That's why metrics like ROC AUC matter more here, since they measure how well the model
+        distinguishes between classes, not just how often it's right.</p>
+        <br>
+        <p>As your data grows it can evolve, so it's important to analyze and check on your data regularly. Customer behavior changes
+        over time, and what worked yesterday might not work tomorrow. Keep asking questions and keep exploring.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Wrapping Up
     st.markdown("""
     <div class='highlight-box' style='margin-top: 30px;'>
-        <h3>🎓 Conclusion</h3>
-        <p>This analysis demonstrates the power of machine learning in predicting customer churn.
-        Both <strong>Logistic Regression</strong> and <strong>Random Forest</strong> achieved strong performance
+        <h3>Wrapping Up</h3>
+        <p>This analysis shows the power of machine learning in predicting customer churn.
+        Both <strong>Logistic Regression</strong> and <strong>Random Forest</strong> achieved solid performance
         with ~80% accuracy and 0.84 ROC AUC scores.</p>
         <br>
-        <p>The key insight from the Decision Tree analysis is that <strong>customer behavior is non-linear</strong>.
+        <p>The big insight from the Decision Tree analysis is that <strong>customer behavior is non-linear</strong>.
         Different customer segments respond differently to the same factors. Logistic Regression assumes one global
-        relationship for all customers, but the reality is more nuanced. A fiber optic customer with 2 months tenure
+        relationship for all customers, but reality is more nuanced. A fiber optic customer with 2 months tenure
         behaves very differently from a DSL customer with 3 years tenure, even if they have similar monthly charges.</p>
         <br>
         <p>This suggests that <strong>personalized retention strategies</strong> would be more effective than
         one-size-fits-all approaches. Segment customers by internet type and tenure, then apply targeted interventions.</p>
         <br>
-        <p><em><strong>Final Recommendation:</strong> Deploy Random Forest for production predictions due to its
-        ability to capture non-linear patterns. Use Logistic Regression coefficients for stakeholder explanations.
-        Investigate fiber optic service quality and target new, high-paying customers with early retention incentives.</em></p>
+        <p><em><strong>My Recommendation:</strong> Deploy Random Forest for production predictions since it captures
+        non-linear patterns well. Use Logistic Regression coefficients when you need to explain things to stakeholders.
+        Look into fiber optic service quality and target new, high-paying customers with early retention incentives.</em></p>
     </div>
     """, unsafe_allow_html=True)
 
